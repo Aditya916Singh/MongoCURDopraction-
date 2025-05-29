@@ -34,9 +34,12 @@ router.get('/edit/:id', async (req, res) => {
   }
 });
 
-
 router.post('/edit/:id', async (req, res) => {
   const { name, mobile, dob, gender } = req.body;
+  const mobileRegex = /^\d{10}$/;
+  if (!mobileRegex.test(mobile)) {
+    return res.status(400).send("Invalid mobile number. It must be exactly 10 digits.");
+  }
   await User.findByIdAndUpdate(req.params.id, { name, mobile, dob, gender });
   res.redirect('/');
 });

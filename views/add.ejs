@@ -53,7 +53,15 @@
 
         <div class="mb-3">
           <label for="mobile">Mobile Number</label>
-          <input name="mobile" id="mobile" class="form-control" required />
+          <input 
+  name="mobile" 
+  class="form-control" 
+  required 
+  pattern="\d{10}" 
+  title="Please enter exactly 10 digits" 
+  maxlength="10" 
+  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+/>
         </div>
 
         <div class="mb-3">
@@ -65,8 +73,8 @@
           <label for="gender">Gender</label>
           <select name="gender" id="gender" class="form-control" required>
             <option value="">Select Gender</option>
-            <option value="Male">👨 Male</option>
-            <option value="Female">👩 Female</option>
+            <option value="Male"> Male</option>
+            <option value="Female"> Female</option>
             <option value="Other"> Other</option>
           </select>
         </div>
