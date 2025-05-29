@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.table-custom {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f0f0f0; 
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-custom th,
+.table-custom td {
+  padding: 12px 20px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.table-custom th {
+  background-color: #ddd;
+}
+
+.btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-add {
+  background-color: #007bff;
+}
+
+.btn-edit {
+  background-color: #28a745;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
