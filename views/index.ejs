@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -95,6 +95,147 @@
               </td>
             </tr>
           <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Dashboard</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    h1 {
+      font-weight: 700;
+      color: #2c3e50;
+    }
+    .btn-add {
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .btn-add:hover {
+      background-color: #214588;
+      color: white;
+      text-decoration: none;
+    }
+    .table th {
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+    }
+    .table td {
+      vertical-align: middle;
+      text-align: center;
+    }
+    .table tbody tr:hover {
+      background-color: #e9ecef;
+    }
+    .btn-edit {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-edit:hover {
+      background-color: #0056b3;
+      color: white;
+      text-decoration: none;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+    .user-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>User Details</h1>
+      <a href="/add" class="btn-add">+ Add User</a>
+    </div>
+
+    <div class="table-responsive shadow rounded">
+      <table class="table table-bordered mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Profile Picture</th> <!-- New column -->
+            <th>Username</th>
+            <th>Mobile No</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach((user, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td>
+  <% if (user.image && user.image !== '') { %>
+    <img src="/uploads/<%= user.image %>" alt="User Image" class="user-img" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" />
+  <% } else { %>
+    <img src="/images/default-avatar.png" alt="Default Image" class="user-img" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" />
+  <% } %>
+</td>
+
+              <td><%= user.name %></td>
+              <td><%= user.mobile %></td>
+              <td><%= user.gender %></td>
+              <td><%= user.dob ? moment(user.dob).format("YYYY-MM-DD") : "N/A" %></td>
+              <td><%= moment(user.createdAt).fromNow() %></td>
+              <td>
+                <a href="/edit/<%= user._id %>" class="btn-edit me-1">✏️ Update</a>
+                <form
+                  action="/delete/<%= user._id %>"
+                  method="POST"
+                  style="display:inline;"
+                  onsubmit="return confirm('Are you sure you want to delete this user?');"
+                >
+                  <button type="submit" class="btn-delete">🗑️ Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
         </tbody>
       </table>
     </div>
