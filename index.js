@@ -5,12 +5,10 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const userRoutes = require('./routes/userRoutes');
 const fs = require('fs');
-
 const app = express();
 const PORT = 3000;
-
-// ✅ Ensure 'public/uploads' directory exists
 const uploadDir = path.join(__dirname, 'public/uploads');
+
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }

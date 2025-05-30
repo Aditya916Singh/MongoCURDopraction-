@@ -90,17 +90,19 @@
       <a href="/add" class="btn-add">+ Add User</a>
     </div>
     <form class="mb-4" method="GET" action="/">
-  <div class="input-group">
+  <div class="input-group" style="max-width: 620px; ">
     <input
       type="text"
       name="search"
       class="form-control"
       placeholder="Search by name, DOB, gender, or mobile no"
       value="<%= search || '' %>"
+      style="min-width: 0;"
     />
     <button class="btn btn-primary" type="submit">🔍 Search</button>
   </div>
 </form>
+
 
     <div class="table-responsive shadow rounded">
       <table class="table table-bordered mb-0">
