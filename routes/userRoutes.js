@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
@@ -18,6 +19,29 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+router.get('/', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 5;
+    const skip = (page - 1) * limit;
+
+    const totalUsers = await User.countDocuments();
+    const totalPages = Math.ceil(totalUsers / limit);
+    const users = await User.find().sort({ createdAt: -1 }).skip(skip).limit(limit);
+
+    res.render('index', {
+      users,
+      moment,
+      currentPage: page,
+      totalPages
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching users');
+  }
+});
+
 
 // GET: Show all users
 router.get('/', async (req, res) => {
