@@ -88,9 +88,9 @@
               <td><%= user.dob ? moment(user.dob).format("YYYY-MM-DD") : "N/A" %></td>
               <td><%= moment(user.createdAt).fromNow() %></td>
               <td>
-                <a href="/edit/<%= user._id %>" class="btn btn-edit me-1">✏️ Edit</a>
+                <a href="/edit/<%= user._id %>" class="btn btn-edit me-1">✏️ Update</a>
                 <form action="/delete/<%= user._id %>" method="POST" style="display:inline;">
-                  <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure?')">🗑️</button>
+                  <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure?')">🗑️ </button>
                 </form>
               </td>
             </tr>

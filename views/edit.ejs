@@ -48,17 +48,44 @@
       <form action="/edit/<%= user._id %>" method="POST">
         <div class="mb-3">
           <label for="name">Full Name</label>
-          <input type="text" name="name" id="name" class="form-control" value="<%= user.name %>" required />
+         <input
+  type="text"
+  name="name"
+  class="form-control"
+  value=""
+  required
+  pattern="[A-Za-z\s]+"
+  title="Name should contain only letters and spaces"
+/>
+
         </div>
 
         <div class="mb-3">
           <label for="mobile">Mobile Number</label>
-          <input type="text" name="mobile" id="mobile" class="form-control" value="<%= user.mobile %>" required />
+         <input 
+  name="mobile" 
+  class="form-control" 
+  required 
+  pattern="\d{10}" 
+  title="Please enter exactly 10 digits" 
+  maxlength="10" 
+  oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+/>
         </div>
 
         <div class="mb-3">
           <label for="dob">Date of Birth</label>
-          <input type="date" name="dob" id="dob" class="form-control" value="<%= user.dob.toISOString().substr(0, 10) %>" required />
+         <input
+  type="date"
+  class="form-control"
+  id="dob"
+  name="dob"
+  value="<%= user && user.dob ? user.dob.toISOString().substr(0, 10) : '' %>"
+  max="<%= new Date().toISOString().split('T')[0] %>"
+  required
+/>
+
+
         </div>
 
         <div class="mb-4">
